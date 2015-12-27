@@ -27,7 +27,8 @@
     "web-audio-scheduler": "^1.0.0"
   },
   "scripts": {
-    "test": "mocha "
+    "test": "mocha ",
+    "start":"gulp"
   },
   "author": "mutun",
   "license": "ISC"
