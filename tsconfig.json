@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": false,
+    "noLib": false,
+    "outDir": "public"
+  },
+  "formatCodeOptions": {
+    "indentSize": 2,
+    "tabSize": 2,
+    "newLineCharacter": "\r\n",
+    "convertTabsToSpaces": true
+  },
+  "filesGlob": [
+    "./**/*.ts",
+    "!./node_modules/**/*.ts"
+  ],
+  "files": [
+    "./src/javascripts/CoreAudio/AudioComponent.ts",
+    "./src/javascripts/CoreAudio/AudioContextWrapper.ts",
+    "./src/javascripts/CoreAudio/Core.ts",
+    "./src/javascripts/Debug/Debug.ts",
+    "./src/javascripts/Effects/Distortion/Distortion.ts",
+    "./src/javascripts/Instrument/StreamNode.ts",
+    "./src/javascripts/Mixer/Mixer.ts",
+    "./src/javascripts/Mixer/Track.ts",
+    "./src/javascripts/Project/Project.ts",
+    "./src/javascripts/Sequencer/Sequencer.ts",
+    "./src/javascripts/Sequencer/Track.ts",
+    "./src/main.ts",
+    "./typings/es6-promise/es6-promise.d.ts",
+    "./typings/node/node.d.ts",
+    "./typings/tsd.d.ts",
+    "./typings/webaudioapi/waa.d.ts",
+    "./typings/webaudioscheduler/webaudioscheduler.d.ts",
+    "./typings/webrtc/MediaStream.d.ts"
+  ],
+  "atom": {
+    "rewriteTsconfig": true
+  }
+}
