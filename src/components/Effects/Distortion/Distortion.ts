@@ -1,9 +1,8 @@
 import AudioComponent from '../../CoreAudio/AudioComponent';
 
 export default class Distortion extends AudioComponent {
-  distortion:WaveShaperNode;
-
-
+  name:string = "Effects/Distortion";
+  distortion: WaveShaperNode;
   constructor() {
     super();
     this.distortion = this.context.createWaveShaper();
@@ -17,10 +16,10 @@ export default class Distortion extends AudioComponent {
     var amount = typeof amount === 'number' ? amount : 50,
       n_samples = this.context.sampleRate,
       curve = new Float32Array(n_samples),
-      deg = Math.PI / 180,
-      i = 0,
-      x;
-    for (; i < n_samples; ++i) {
+      deg:number = Math.PI / 180,
+      i:number = 0,
+      x:number;
+    for (let i = 0; i < n_samples; ++i) {
       x = i * 2 / n_samples - 1;
       curve[i] = (3 + amount) * x * 20 * deg / (Math.PI + amount * Math.abs(x));
     }

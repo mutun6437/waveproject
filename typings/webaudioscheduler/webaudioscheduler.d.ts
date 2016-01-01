@@ -11,10 +11,10 @@ declare module "web-audio-scheduler" {
     state: string;
     events: any[];
 
-    constructor(arg?: WebAudioSchedulerHandler);
+    constructor(arg?: WebAudioSchedulerHandler):any;
     insert(time: number, callback: (e: any) => void, options?: WebAudioSchedulerOptions): number;
-    start(callback: (e: any) => void);
-    stop(isReset: boolean);
+    start(callback: (e: any) => void):any;
+    stop(isReset: boolean):any;
     nextTick(time: number, callback: () => void, args?: any): number;
     remove(schedId: number): number;
     removeAll(): void;

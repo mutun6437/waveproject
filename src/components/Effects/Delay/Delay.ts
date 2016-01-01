@@ -3,6 +3,8 @@ import AudioComponent from '../../CoreAudio/AudioComponent';
 
 //TODO 動作確認待ち
 export default class Delay extends AudioComponent {
+  name:string = "Effects/Delay";
+
   private delay: DelayNode;
   private dry: GainNode;
   private wet: GainNode;
@@ -21,7 +23,6 @@ export default class Delay extends AudioComponent {
     this.dry.gain.value = 0.7;
     this.wet.gain.value = 0.3;
     this.feedback.gain.value = 0.5;
-
 
     this.input.connect(this.dry);
     this.input.connect(this.delay);

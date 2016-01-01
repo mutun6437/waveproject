@@ -36,14 +36,13 @@ export default class Track extends AudioComponent {
   }
 
   resolveNode(): AudioComponent[] {
-    let nodes = [];
-    console.log("resolve",nodes);
+    let nodes:AudioComponent[] = [];
     this.nodes.map((value:AudioComponent, index:number) => {
       if (value) {
         nodes.push(value);
       }
     });
-    console.log("resolved",nodes);
+    console.log("Track [ "+ this.number + "] :Nodes:",nodes);
     return nodes;
   }
 

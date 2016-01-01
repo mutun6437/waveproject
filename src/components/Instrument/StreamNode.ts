@@ -12,7 +12,7 @@ export default class StreamNode extends AudioComponent {
     },this.connectionErrorHandler);
   }
 
-  connectionErrorHandler(e){
+  connectionErrorHandler(e:Error){
     console.log("[StreamNode]接続エラー",e);
   }
 
