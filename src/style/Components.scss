@@ -1,1 +1,34 @@
 
+.View-Window {
+  position: absolute;
+  top:50px;
+  left:100px;
+  background-color: black;
+  position: absolute;
+}
+
+.View-Window-CloseButton {
+  color: white;
+  position: relative;
+  float: right;
+  background-color: red;
+  width: 30px;
+  height:18px;
+  margin: 1px;
+  padding: 0px
+}
+
+.View-Window-CloseButton:hover {
+  background-color: #EE021e;
+}
+
+.View-Window-CloseButton:focus {
+
+}
+
+.View-Document {
+  position: relative;
+  top:20px;
+  left:10px;
+  background-color: gray;
+}

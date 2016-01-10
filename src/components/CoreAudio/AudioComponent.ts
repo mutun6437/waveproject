@@ -1,7 +1,7 @@
 import AudioContextWrapper from './AudioContextWrapper';
-import Component from '../UI/Component';
+import View from '../UI/View';
 
-export default class AudioComponent extends Component {
+abstract class AudioComponent extends View {
   context: AudioContext = null;
   input: GainNode;
   output: GainNode;
@@ -24,4 +24,6 @@ export default class AudioComponent extends Component {
     this.output.disconnect();
   }
 
+  abstract setDomEvent(element:HTMLElement):void;
 }
+export default  AudioComponent

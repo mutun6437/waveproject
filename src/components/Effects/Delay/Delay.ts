@@ -1,9 +1,8 @@
 import Utils from '../../Utils/NumberUtils';
 import AudioComponent from '../../CoreAudio/AudioComponent';
 
-//TODO 動作確認待ち
 export default class Delay extends AudioComponent {
-  name:string = "Effects/Delay";
+  name: string = "Effects/Delay";
 
   private delay: DelayNode;
   private dry: GainNode;
@@ -37,6 +36,7 @@ export default class Delay extends AudioComponent {
 
   setDelayTime(value: number) {
     if (!Utils.isValid(value)) {
+      console.log("[Delay]setDelayTime:", value);
       this.delay.delayTime.value = value;
     }
   }
@@ -46,6 +46,7 @@ export default class Delay extends AudioComponent {
     if (!Utils.isValid(value)) {
       value = value >= 1.0 ? 1.0 : value;
       value = value <= 0.0 ? 0.0 : value;
+      console.log("[Delay]setWetRatio", "wet:" + value, "dry:" + (1 - value));
       this.wet.gain.value = value;
       this.dry.gain.value = 1 - value;
     }
@@ -53,16 +54,40 @@ export default class Delay extends AudioComponent {
 
   setFeedback(value: number) {
     if (!Utils.isValid(value)) {
+      console.log("[Delay]setFeedback",value);
       this.feedback.gain.value = value;
     }
   }
 
-  getDelayValue():DelayParam {
+  getDelayValue(): DelayParam {
     return {
       delayTime: this.delay.delayTime.value,
       wet: this.wet.gain.value,
       dry: this.dry.gain.value,
       feedback: this.feedback.gain.value
+    };
+  }
+
+  setDomEvent(element: HTMLElement) {
+    let delayTime = element.getElementsByClassName("delayTime")[0] as HTMLInputElement;
+    delayTime.onchange = (ev: Event) => {
+      let target = ev.target as HTMLInputElement;
+      delayTime.value = target.value;
+      this.setDelayTime((parseInt(delayTime.value) / 100));
+    };
+
+    let wet = element.getElementsByClassName("wet/dry")[0] as HTMLInputElement;
+    wet.onchange = (ev: Event) => {
+      let target = ev.target as HTMLInputElement;
+      wet.value = target.value;
+      this.setWetRatio((parseInt(wet.value) / 100));
+    };
+
+    let feedback = element.getElementsByClassName("feedback")[0] as HTMLInputElement;
+    feedback.onchange = (ev: Event) => {
+      let target = ev.target as HTMLInputElement;
+      feedback.value = target.value;
+      this.setFeedback((parseInt(feedback.value) / 100));
     };
   }
 }

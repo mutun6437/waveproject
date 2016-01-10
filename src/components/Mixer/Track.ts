@@ -4,6 +4,11 @@ export default class Track extends AudioComponent {
   number: number;
   nodes: AudioComponent[] = [];
 
+  /**
+   * 1~ の数字にコンポーネントを挿入
+   * fetchAudioNodeが正しく連結し、ノードを生成
+   */
+
   constructor(number: number) {
     super();
     this.number = number;
@@ -14,7 +19,6 @@ export default class Track extends AudioComponent {
     console.log("Nodes", this.nodes.length, "index", index, "node", node);
     this.nodes[index] = node;
     this.fetchAudioNode();
-    //TODO 挿入するか上書きするか
   }
 
   fetchAudioNode() {
@@ -36,13 +40,13 @@ export default class Track extends AudioComponent {
   }
 
   resolveNode(): AudioComponent[] {
-    let nodes:AudioComponent[] = [];
-    this.nodes.map((value:AudioComponent, index:number) => {
+    let nodes: AudioComponent[] = [];
+    this.nodes.map((value: AudioComponent, index: number) => {
       if (value) {
         nodes.push(value);
       }
     });
-    console.log("Track [ "+ this.number + "] :Nodes:",nodes);
+    console.log("Track [ " + this.number + "] :Nodes:", nodes);
     return nodes;
   }
 
@@ -54,6 +58,14 @@ export default class Track extends AudioComponent {
         this.nodes[i].output.disconnect();
       }
     }
+  }
+
+  getAudioNode(index: number): AudioComponent {
+    return this.nodes[index] ? this.nodes[index] : null;
+  }
+
+  setDomEvent(){
+
   }
 
 

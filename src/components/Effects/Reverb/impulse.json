@@ -1,0 +1,11 @@
+{
+  "none": null,
+  "hall": {
+    "audio": "Effects/Reverb/impulse/hall.wav",
+    "image": "Effects/Reverb/impulse/hall.jpg"
+  },
+  "chapel": {
+    "audio": "Effects/Reverb/impulce/chapel.wav",
+    "image": "Effects/Reverb/impulce/chapel.jpg"
+  }
+}

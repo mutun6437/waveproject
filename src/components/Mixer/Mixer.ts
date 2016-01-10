@@ -26,4 +26,8 @@ export default class Mixer extends AudioComponent {
     this.tracks[index] = null;
   }
 
+  setDomEvent(){
+    
+  }
+
 }

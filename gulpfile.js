@@ -82,7 +82,7 @@ gulp.task("build",function(){
 });
 
 gulp.task("watch",function(){
-  gulp.watch("src/**/*.{ts,tsx}",["build"]);
+  gulp.watch("src/**/*.{ts,tsx,html,scss}",["build"]);
 });
 
 gulp.task("default", ["build","watch","sass:watch","start"]);

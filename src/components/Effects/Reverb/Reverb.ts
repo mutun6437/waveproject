@@ -73,6 +73,10 @@ export default class Reverb extends AudioComponent {
 
   }
 
+  setDomEvent(){
+    
+  }
+
 
 
   //TODO JSONとして外に出すべき？？ PathをUtil化して他のところでもアクセスできるようにする
