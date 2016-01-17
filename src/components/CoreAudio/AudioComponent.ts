@@ -1,17 +1,19 @@
+import * as React from 'react';
 import AudioContextWrapper from './AudioContextWrapper';
 import View from '../UI/View';
+import BaseWindow from '../UI/BaseWindow';
 
-abstract class AudioComponent extends View {
+abstract class AudioComponent {
   context: AudioContext = null;
   input: GainNode;
   output: GainNode;
+  window:BaseWindow<any,any>;
 
   constructor() {
-    super();
+    //super();
     this.context = AudioContextWrapper.getContext();
     this.input = this.context.createGain();
     this.output = this.context.createGain();
-
   }
 
   connect(node: AudioComponent) {
@@ -24,6 +26,17 @@ abstract class AudioComponent extends View {
     this.output.disconnect();
   }
 
-  abstract setDomEvent(element:HTMLElement):void;
+  getComponent():React.Component<any,any>{
+    return this.window;
+  };
+
+  // openWindow(){
+  //   this.window.openWindow();
+  // }
+  //
+  // closeWindow(){
+  //   this.window.closeWindow();
+  // }
+
 }
 export default  AudioComponent

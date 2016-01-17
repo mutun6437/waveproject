@@ -9,6 +9,7 @@ import Delay from './components/Effects/Delay/Delay';
 import Reverb from './components/Effects/Reverb/Reverb';
 import * as React from 'react'
 import * as ReactDom from 'react-dom';
+import MixerWindow from './components/Mixer/MixerWindow';
 
 import {ReactSample} from './test/React';
 
@@ -28,31 +29,31 @@ window.onload = () => {
   let reverb:Reverb = new Reverb();
 
   Debug.createDebugButton("addDelay", () => {
-    delay.openWindow();
+    delay.window.openWindow();
     mixer.getTrack(1).insertNode(2, delay);
   });
 
   Debug.createDebugButton("removeDelay", () => {
-    delay.closeWindow();
+    delay.window.closeWindow();
   });
 
   Debug.createDebugButton("addDelay", () => {
-    delay2.openWindow();
+    //delay2.openWindow();
     mixer.getTrack(1).insertNode(3, delay);
   });
 
   Debug.createDebugButton("removeDelay", () => {
-    delay2.closeWindow();
+    //delay2.closeWindow();
   });
 
 
   Debug.createDebugButton("addReverb", () => {
-    reverb.openWindow();
+    //reverb.openWindow();
     mixer.getTrack(1).insertNode(3,reverb);
   });
 
   Debug.createDebugButton("removeReverb", () => {
-    reverb.closeWindow();
+    //reverb.closeWindow();
   });
 
 
@@ -63,5 +64,5 @@ window.onload = () => {
   Debug.createEffectList();
 
 
-  ReactDom.render(React.createElement(ReactSample),document.getElementById("react"));
+  ReactDom.render(React.createElement(mixer.window.contents()),document.getElementById("react"));
 }

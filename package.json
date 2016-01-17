@@ -4,7 +4,8 @@
   "description": "Web Audio Application",
   "main": "app.js",
   "dependencies": {
-    "gulp": "^3.9.0"
+    "gulp": "^3.9.0",
+    "typed-react": "^3.4.1"
   },
   "devDependencies": {
     "browser-sync": "^2.10.1",

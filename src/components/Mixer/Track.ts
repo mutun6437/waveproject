@@ -1,8 +1,10 @@
 import AudioComponent from '../CoreAudio/AudioComponent';
+import TrackWindow from './TrackWindow';
 
 export default class Track extends AudioComponent {
   number: number;
   nodes: AudioComponent[] = [];
+  window:TrackWindow;
 
   /**
    * 1~ の数字にコンポーネントを挿入
@@ -13,6 +15,8 @@ export default class Track extends AudioComponent {
     super();
     this.number = number;
     this.fetchAudioNode();
+    this.window = new TrackWindow({nodes:[]});
+    this.window.openWindow();
   }
 
   insertNode(index: number, node: AudioComponent, isSort?: boolean) {
@@ -64,9 +68,12 @@ export default class Track extends AudioComponent {
     return this.nodes[index] ? this.nodes[index] : null;
   }
 
+  openNodeWindow(index:number){
+    let component = this.getAudioNode(index).getComponent();
+    this.window.addNode(index,component);
+  }
+
   setDomEvent(){
 
   }
-
-
 }
