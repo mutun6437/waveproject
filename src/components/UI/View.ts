@@ -59,8 +59,6 @@ abstract class View {
     });
   };
 
-
-
   openWindow(): Promise<{}> {
     if (this.isOpen) { return; }
 

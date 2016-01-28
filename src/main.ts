@@ -9,6 +9,7 @@ import Delay from './components/Effects/Delay/Delay';
 import Reverb from './components/Effects/Reverb/Reverb';
 import * as React from 'react'
 import * as ReactDom from 'react-dom';
+import TrackWindow from './System/UI/TrackWindow/TrackWindow';
 
 import {ReactSample} from './test/React';
 
@@ -16,7 +17,6 @@ window.onload = () => {
   let stream = new StreamNode();
   let mixer = new Mixer();
   mixer.createTrack(stream);
-
 
   Debug.createDebugButton("addDistortion", () => {
     let distortion = new Distortion();
@@ -45,7 +45,6 @@ window.onload = () => {
     delay2.closeWindow();
   });
 
-
   Debug.createDebugButton("addReverb", () => {
     reverb.openWindow();
     mixer.getTrack(1).insertNode(3,reverb);
@@ -56,11 +55,14 @@ window.onload = () => {
   });
 
 
+
   Debug.lineBreak();
   Debug.createEffectOpen(() => {
     console.log("open");
   });
   Debug.createEffectList();
+
+  new TrackWindow();
 
 
   ReactDom.render(React.createElement(ReactSample),document.getElementById("react"));

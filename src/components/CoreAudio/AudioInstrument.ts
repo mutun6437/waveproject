@@ -1,20 +1,17 @@
 import AudioContextWrapper from './AudioContextWrapper';
-import View from '../UI/View';
 
-abstract class AudioComponent extends View {
+abstract class AudioInstrument{
   context: AudioContext = null;
   input: GainNode;
   output: GainNode;
 
   constructor() {
-    super();
     this.context = AudioContextWrapper.getContext();
     this.input = this.context.createGain();
     this.output = this.context.createGain();
-
   }
 
-  connect(node: AudioComponent) {
+  connect(node: AudioInstrument) {
     console.log("[AudioNodeWrapper]Connect", node);
     this.output.connect(node.input);
   }
@@ -23,7 +20,5 @@ abstract class AudioComponent extends View {
     console.log("[AudioNodeWrapper]Disconnect");
     this.output.disconnect();
   }
-
-  abstract setDomEvent(element:HTMLElement):void;
 }
-export default  AudioComponent;
+export default  AudioInstrument;

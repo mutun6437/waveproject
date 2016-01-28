@@ -1,5 +1,6 @@
 import Track from './Track';
 import AudioComponent from '../CoreAudio/AudioComponent';
+import AudioInstrument from '../CoreAudio/AudioInstrument';
 import AudioContextWrapper from '../CoreAudio/AudioContextWrapper';
 
 export default class Mixer extends AudioComponent {
@@ -13,7 +14,7 @@ export default class Mixer extends AudioComponent {
     return this.tracks[index-1];
   }
 
-  createTrack(audioNode: AudioComponent) {
+  createTrack(audioNode: AudioInstrument) {
     let track = new Track(this.tracks.length);
     track.output.connect(this.output);
     audioNode.connect(track);
@@ -27,7 +28,7 @@ export default class Mixer extends AudioComponent {
   }
 
   setDomEvent(){
-    
+
   }
 
 }

@@ -7,14 +7,46 @@
   <link rel="stylesheet" type="text/css" href="./style/style.css">
   <script src="./libs/jquery-2.1.4.min.js" type="text/javascript"></script>
   <script src="./libs/jquery-ui.js" type="text/javascript"></script>
+  <script src="./libs/d3.min.js" type="text/javascript"></script>
 
   <!-- <script src="./libs/WebAudioScheduler.js" type="text/javascript"></script> -->
   <script type="text/javascript" src="./bundle.js"></script>
 </head>
 
 <body>
+  <div id="header"></div>
+
+
+  <div id="contents">
+    <!-- menuバー -->
+    <div id="menu"></div>
+
+    <!-- 各トラックの設定 -->
+    <div id="controll"></div>
+
+    <!-- トラック画面 -->
+    <div id="main">
+      <div id="left">
+        <div id="dummy1"></div>
+        <div id="tracks">
+
+
+        </div>
+      </div>
+
+      <div id="right">
+        <div id="scaler"></div>
+        <div id="pool"></div>
+      </div>
+    </div>
+
+    <div id="mixer"></div>
+  </div>
+
 
   WebAudioTest ABCD
+
+
   <div id="debug"></div>
   <div id="mixer"></div>
   <div id="react"></div>
