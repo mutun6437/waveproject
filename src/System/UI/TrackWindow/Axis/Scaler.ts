@@ -8,9 +8,10 @@ export default class Scaler {
 
   constructor(ratio: number) {
     this.width = document.getElementById('right').clientWidth; // SVG領域の横幅
-    this.height = document.getElementById('right').clientHeight;
+    this.height = 18;
+
     this.svg = d3.select("#scaler").append("svg").attr("width", this.width * ratio).attr("height", this.height);
-    // document.getElementById('right').style.width = this.width * ratio + "px";
+    //document.getElementById('right').style.width = this.width * ratio + "px";
     this.scale = d3.scale.linear()
       .domain([0, this.width]).range([0, this.width * ratio]);
   }
