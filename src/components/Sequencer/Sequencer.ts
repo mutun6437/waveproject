@@ -17,16 +17,14 @@ export default class Sequencer {
   }
 
   start() {
-    if (!this.isPlaying) {
+    this.isPlaying = !this.isPlaying;
+
+    if (this.isPlaying) {
       this.isPlaying = true;
       this.schedular.startTimer();
 
       this.metronome.start();
-    }
-  }
-
-  stop() {
-    if (this.isPlaying) {
+    } else {
       this.isPlaying = false;
       this.schedular.stopTimer();
 

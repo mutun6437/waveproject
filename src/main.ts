@@ -69,8 +69,7 @@ window.onload = () => {
 
   //画面UIを構築
   new TrackWindow();
-  new ControlPanel();
-
+  new ControlPanel(sequencer);
 
 
   //sequencer.start();

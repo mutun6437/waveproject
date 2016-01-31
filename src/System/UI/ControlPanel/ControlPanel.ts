@@ -1,9 +1,11 @@
+import Player from './Player/Player';
+import Sequencer from '../../../components/Sequencer/Sequencer';
 
 export default class ControlPanel {
-  constructor(){
-
+  player:Player = null;
+  constructor(sequencer:Sequencer){
+    this.player = new Player(sequencer);
   }
 
 
-  
 }

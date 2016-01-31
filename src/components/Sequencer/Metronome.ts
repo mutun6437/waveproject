@@ -13,7 +13,7 @@ export default class Metronome {
       if (e.data == "tick") {
         console.log("tick!");
         this.tick();
-      }else{
+      } else {
         console.log("message: " + e.data);
       }
     };
@@ -27,9 +27,6 @@ export default class Metronome {
   }
 
   private scheduleNote(beatNumber: number, time: number) {
-    // push the note on the queue, even if we're not playing.
-    this.notesInQueue.push({ note: beatNumber, time: time });
-
     if ((this.noteResolution == 1) && (beatNumber % 2))
       return; // we're not playing non-8th 16th notes
     if ((this.noteResolution == 2) && (beatNumber % 4))
@@ -44,6 +41,8 @@ export default class Metronome {
       osc.frequency.value = 440.0;
     else                        // other 16th notes = high pitch
       osc.frequency.value = 220.0;
+
+    this.notesInQueue.push({ note: beatNumber, time: time, osc: osc });
 
     osc.start(time);
     osc.stop(time + this.noteLength);
@@ -61,6 +60,10 @@ export default class Metronome {
 
   setTempo(tempo: number) {
     this.tempo = tempo;
+    this.notesInQueue.forEach((note)=>{
+      note.osc.stop();
+    });
+    this.nextNoteTime = 0;
   }
 
   start() {
@@ -70,6 +73,9 @@ export default class Metronome {
 
   stop() {
     console.log("メトロノームを停止します");
+    this.notesInQueue.forEach((note:Note)=>{
+      note.osc.stop();
+    });
   }
 }
 
@@ -77,4 +83,5 @@ export default class Metronome {
 interface Note {
   note: number;
   time: number;
+  osc: OscillatorNode;
 }
