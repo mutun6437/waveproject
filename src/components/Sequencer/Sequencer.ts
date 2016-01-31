@@ -1,31 +1,41 @@
-// import WaveAudioContext from '../CoreAudio/WaveAudioContext';
-// import { WebAudioScheduler } from 'web-audio-scheduler';
-// var WebAudioScheduler = require("web-audio-scheduler");
-// import Track from './Track';
-//
-// export default class Sequencer {
-//   scheduler:WebAudioScheduler;
-//   tracks:Track[];
-//
-//   tempo:number = null;
-//
-//   constructor(tempo:number){
-//     this.scheduler = new WebAudioScheduler({ context: WaveAudioContext.getContext() });
-//     this.tempo = tempo;
-//   }
-//
-//
-//   play(){
-//     //tracksのすべてのスケジュールをschedulerに渡し再生する
-//   }
-//
-//
-//   createTrack(){
-//     this.tracks.push(new Track(this.scheduler));
-//   }
-//
-//   setTempo(tempo:number){
-//     this.tempo = tempo;
-//   }
-//
-// }
+import Metronome from './Metronome';
+import AudioSchedular from '../../Worker/AudioSchedular';
+
+export default class Sequencer {
+  tempo: number = 120;
+  isPlaying: boolean = false;
+
+  //Metronome
+  isMetronome: boolean = true;
+  metronome: Metronome = new Metronome(this.tempo);
+
+  //Schedular
+  schedular: AudioSchedular = new AudioSchedular();;
+
+  constructor() {
+
+  }
+
+  start() {
+    if (!this.isPlaying) {
+      this.isPlaying = true;
+      this.schedular.startTimer();
+
+      this.metronome.start();
+    }
+  }
+
+  stop() {
+    if (this.isPlaying) {
+      this.isPlaying = false;
+      this.schedular.stopTimer();
+
+      this.metronome.stop();
+    }
+  }
+
+  setTempo(tempo: number) {
+    this.tempo = tempo;
+    this.metronome.setTempo(this.tempo);
+  }
+}

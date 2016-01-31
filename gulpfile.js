@@ -47,11 +47,11 @@ gulp.task("static",function(){
 
 gulp.task('start', function () {
   nodemon({
-    script: 'server.js'
-  , ext: 'js html'
-  , env: { 'NODE_ENV': 'development' }
-  })
-})
+    script: "server.js",
+    ext: 'js html',
+    env: { 'NODE_ENV': 'development' }
+  });
+});
 
 gulp.task('browser-sync', function() {
     // browserSync({
@@ -77,8 +77,23 @@ gulp.task('sass:watch', function () {
   gulp.watch('src/**/*.scss', ['sass']);
 });
 
+
+gulp.task("tsc:Worker",function(){
+  var browserify = require( 'browserify' );
+  var source     = require( 'vinyl-source-stream' );
+  var buffer     = require( 'vinyl-buffer' );
+  var sourcemaps = require( 'gulp-sourcemaps' );
+
+  return gulp.src("src/Worker/*.ts")
+  .pipe(ts(typescriptProject,{referencedFrom: ['Worker.ts']}))
+  .js
+  .pipe(babel())
+  .pipe(gulp.dest('src/libs'));
+});
+
+
 gulp.task("build",function(){
-  runSequence("typescript","sass","static","bs-reload");
+  runSequence("tsc:Worker","typescript","sass","static","bs-reload");
 });
 
 gulp.task("watch",function(){

@@ -1,8 +1,10 @@
 import AudioComponent from '../CoreAudio/AudioComponent';
+import AudioSystem from '../CoreAudio/AudioSystem';
 
-export default class Track extends AudioComponent {
+export default class Track extends AudioSystem {
   number: number;
   nodes: AudioComponent[] = [];
+
 
   /**
    * 1~ の数字にコンポーネントを挿入
@@ -64,8 +66,11 @@ export default class Track extends AudioComponent {
     return this.nodes[index] ? this.nodes[index] : null;
   }
 
-  setDomEvent(){
-
+  getDOMElement():HTMLElement{
+    let el = document.createElement("div");
+    el.id = "track"+this.number;
+    el.className = "track";
+    return el;
   }
 
 

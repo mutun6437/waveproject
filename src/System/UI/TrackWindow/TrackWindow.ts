@@ -5,7 +5,6 @@ export default class TrackWindow {
 
   constructor() {
     this.axis = new Axis();
-
   }
 
 }

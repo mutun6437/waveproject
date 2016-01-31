@@ -20,6 +20,8 @@ export default class Mixer extends AudioComponent {
     audioNode.connect(track);
     this.tracks[this.tracks.length] = track;
     console.log("[Mixer]createTrack [" + this.tracks.length + "]");
+
+    document.getElementById("tracks").appendChild(track.getDOMElement());
   }
 
   removeTrack(index: number) {
