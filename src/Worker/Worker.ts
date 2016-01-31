@@ -1,7 +1,8 @@
+import WorkerUtil from './WorkerUtil';
+import Enviroment from '../System/Enviroment/Enviroment';
 
-//TODO WebWorker以降時に変更する
-export default class AudioSchedular  {
-  interval: number = 100;
+export default class Worker {
+  interval: number = 25;
   timerID: NodeJS.Timer;
 
   constructor() { }
@@ -30,48 +31,8 @@ export default class AudioSchedular  {
   }
 
   private tick() {
-    WorkerUtil.log("[Worker]Tick");
-    postMessage("tick", "http://"+document.domain+":3000");
+    //WorkerUtil.log("[Worker]Tick");
+    window.postMessage("tick", "http://"+document.domain+":3000/");
   }
 
 }
-
-
-class WorkerUtil {
-  static isDebug:boolean = true;
-  static log(str:string){
-    if(WorkerUtil.isDebug){
-      console.log(str);
-    }
-  }
-}
-
-
-interface WorkerMessage {
-  msg:string;
-  value?:any;
-}
-
-
-let worker:AudioSchedular  = new AudioSchedular();
-let isDebug = true;//デバッグモードの時はログを出力する
-
-
-window.addEventListener("onMessage", (e: MessageEvent) => {
-  WorkerUtil.log("[Worker]onMessage");
-  let data: WorkerMessage = e.data;
-
-  switch (data.msg) {
-    case "onStart":
-      worker.startTimer();
-      break;
-    case "onStop":
-      worker.stopTimer();
-      break;
-    case "setInterval":
-      worker.setInterval(data.value);
-      break;
-    default:
-      break;
-  }
-});

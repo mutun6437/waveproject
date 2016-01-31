@@ -16,4 +16,7 @@ export default class StreamNode extends AudioInstrument {
   connectionErrorHandler(e:Error){
     console.log("[StreamNode]接続エラー",e);
   }
+
+  start(){}
+  stop(){}
 }

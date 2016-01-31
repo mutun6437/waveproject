@@ -15,6 +15,8 @@ export default class Track extends AudioSystem {
     super();
     this.number = number;
     this.fetchAudioNode();
+
+    this.setDomElement();
   }
 
   insertNode(index: number, node: AudioComponent, isSort?: boolean) {
@@ -73,5 +75,8 @@ export default class Track extends AudioSystem {
     return el;
   }
 
+  setDomElement(){
+    document.getElementById("pool").appendChild(this.getDOMElement());
+  }
 
 }

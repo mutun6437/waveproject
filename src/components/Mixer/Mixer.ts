@@ -2,6 +2,7 @@ import Track from './Track';
 import AudioComponent from '../CoreAudio/AudioComponent';
 import AudioInstrument from '../CoreAudio/AudioInstrument';
 import AudioContextWrapper from '../CoreAudio/AudioContextWrapper';
+import TrackWindow from '../../System/UI/TrackWindow/TrackWindow';
 
 export default class Mixer extends AudioComponent {
   tracks: Track[] = [];
@@ -20,8 +21,6 @@ export default class Mixer extends AudioComponent {
     audioNode.connect(track);
     this.tracks[this.tracks.length] = track;
     console.log("[Mixer]createTrack [" + this.tracks.length + "]");
-
-    document.getElementById("tracks").appendChild(track.getDOMElement());
   }
 
   removeTrack(index: number) {

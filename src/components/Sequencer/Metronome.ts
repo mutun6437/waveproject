@@ -11,7 +11,6 @@ export default class Metronome {
     this.tempo = tempo;
     window.onmessage = (e) => {
       if (e.data == "tick") {
-        console.log("tick!");
         this.tick();
       } else {
         console.log("message: " + e.data);

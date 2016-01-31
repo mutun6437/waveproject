@@ -1,6 +1,6 @@
 import AudioContextWrapper from './AudioContextWrapper';
 
-abstract class AudioInstrument{
+abstract class AudioInstrument {
   context: AudioContext = null;
   input: GainNode;
   output: GainNode;
@@ -20,5 +20,6 @@ abstract class AudioInstrument{
     console.log("[AudioNodeWrapper]Disconnect");
     this.output.disconnect();
   }
+
 }
 export default  AudioInstrument;

@@ -9,7 +9,7 @@ export default class Grid {
     this.width = document.getElementById('right').clientWidth; // SVG領域の横幅
     this.height = document.getElementById('right').clientHeight;
 
-    this.svg = d3.select("#pool").append("svg").attr("width", this.width * ratio).attr("height", this.height);
+    this.svg = d3.select("#grid").append("svg").attr("width", this.width * ratio).attr("height", this.height);
     this.grid = d3.scale.linear()
       .domain([0, this.width]).range([0, this.width * ratio]);
   }
