@@ -1,9 +1,9 @@
 import AudioComponent from '../../CoreAudio/AudioComponent';
 import XHRFileReader from '../../File/XHRFileReader';
-import NumberUtils from '../../Utils/NumberUtils';
+import NumberUtils from '../../../System/Utils/NumberUtils';
 
 export default class Reverb extends AudioComponent {
-  name:string = "Effects/Reverb"
+  name:string = "Effects/Reverb";
   currentType: ImpulceAudio;
   private convolver: ConvolverNode;
   private dry: GainNode;

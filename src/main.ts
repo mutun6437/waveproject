@@ -11,6 +11,7 @@ import Sequencer from './components/Sequencer/Sequencer';
 import ControlPanel from './System/UI/ControlPanel/ControlPanel';
 import WaveNode from './components/Instrument/WaveNode';
 import TrackWindow from './System/UI/TrackWindow/TrackWindow';
+import Vocoder from './components/Effects/Vocoder/Vocoder';
 
 let sequencer:Sequencer = null;
 
@@ -29,29 +30,21 @@ window.onload = () => {
   let delay: Delay = new Delay();
   let delay2: Delay = new Delay();
   let reverb: Reverb = new Reverb();
+  let vocoder: Vocoder = new Vocoder();
 
   Debug.createDebugButton("addDelay", () => {
     delay.openWindow();
     mixer.getTrack(1).insertNode(2, delay);
   });
 
-
-  Debug.createDebugButton("addDelay", () => {
-    //delay2.openWindow();
-    mixer.getTrack(1).insertNode(3, delay);
-  });
-
-
-
-
-  // Debug.createDebugButton("addDelay", () => {
-  //   delay2.openWindow();
-  //   mixer.getTrack(1).insertNode(3, delay);
-  // });
-
   Debug.createDebugButton("addReverb", () => {
     reverb.openWindow();
     mixer.getTrack(1).insertNode(3, reverb);
+  });
+
+  Debug.createDebugButton("addVocoder", () => {
+    vocoder.openWindow();
+    mixer.getTrack(1).insertNode(4, vocoder);
   });
 
 
