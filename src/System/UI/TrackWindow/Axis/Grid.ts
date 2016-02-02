@@ -15,6 +15,9 @@ export default class Grid {
   }
 
   render(ratio: number) {
+    document.getElementById("grid").clientWidth = this.width * ratio;
+    document.getElementById("grid").style.height = 0 + "px";
+
     this.svg.selectAll("g").remove();
     this.svg.append("g")
       .attr("class", "grid")

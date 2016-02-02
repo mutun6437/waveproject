@@ -72,9 +72,12 @@ export default class Track extends AudioSystem {
     let el = document.createElement("div");
     el.id = "track"+this.number;
     el.className = "track";
+    el.style.top =  "0px";
+    console.log(50*this.number+"px",document.getElementById("grid").clientHeight);
+    el.style.position = "relative";
     return el;
   }
-
+  
   setDomElement(){
     document.getElementById("pool").appendChild(this.getDOMElement());
   }
