@@ -3,14 +3,13 @@ import AudioContextWrapper from './AudioContextWrapper';
 import View from '../UI/View';
 import BaseWindow from '../UI/BaseWindow';
 
-abstract class AudioComponent {
+abstract class AudioComponent extends View {
   context: AudioContext = null;
   input: GainNode;
   output: GainNode;
-  window:BaseWindow<any,any>;
 
   constructor() {
-    //super();
+    super();
     this.context = AudioContextWrapper.getContext();
     this.input = this.context.createGain();
     this.output = this.context.createGain();
@@ -26,17 +25,5 @@ abstract class AudioComponent {
     this.output.disconnect();
   }
 
-  getComponent():React.Component<any,any>{
-    return this.window;
-  };
-
-  // openWindow(){
-  //   this.window.openWindow();
-  // }
-  //
-  // closeWindow(){
-  //   this.window.closeWindow();
-  // }
-
 }
-export default  AudioComponent
+export default  AudioComponent;

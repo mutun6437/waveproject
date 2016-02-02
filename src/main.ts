@@ -7,11 +7,13 @@ import Effects from './components/Effects/Effects';
 import Distortion from './components/Effects/Distortion/Distortion';
 import Delay from './components/Effects/Delay/Delay';
 import Reverb from './components/Effects/Reverb/Reverb';
-import * as React from 'react'
-import * as ReactDom from 'react-dom';
-import MixerWindow from './components/Mixer/MixerWindow';
+import Sequencer from './components/Sequencer/Sequencer';
+import ControlPanel from './System/UI/ControlPanel/ControlPanel';
+import WaveNode from './components/Instrument/WaveNode';
+import TrackWindow from './System/UI/TrackWindow/TrackWindow';
 
-import {ReactSample} from './test/React';
+let sequencer:Sequencer = null;
+
 
 window.onload = () => {
   let stream = new StreamNode();
@@ -24,45 +26,56 @@ window.onload = () => {
     mixer.getTrack(1).insertNode(1, distortion);
   });
 
-  let delay:Delay = new Delay();
-  let delay2:Delay = new Delay();
-  let reverb:Reverb = new Reverb();
+  let delay: Delay = new Delay();
+  let delay2: Delay = new Delay();
+  let reverb: Reverb = new Reverb();
 
   Debug.createDebugButton("addDelay", () => {
-    delay.window.openWindow();
+    delay.openWindow();
     mixer.getTrack(1).insertNode(2, delay);
   });
 
-  Debug.createDebugButton("removeDelay", () => {
-    delay.window.closeWindow();
-  });
 
   Debug.createDebugButton("addDelay", () => {
     //delay2.openWindow();
     mixer.getTrack(1).insertNode(3, delay);
   });
 
-  Debug.createDebugButton("removeDelay", () => {
-    //delay2.closeWindow();
-  });
 
+
+
+  // Debug.createDebugButton("addDelay", () => {
+  //   delay2.openWindow();
+  //   mixer.getTrack(1).insertNode(3, delay);
+  // });
 
   Debug.createDebugButton("addReverb", () => {
-    //reverb.openWindow();
-    mixer.getTrack(1).insertNode(3,reverb);
+    reverb.openWindow();
+    mixer.getTrack(1).insertNode(3, reverb);
   });
 
-  Debug.createDebugButton("removeReverb", () => {
-    //reverb.closeWindow();
-  });
+
+  sequencer = new Sequencer();
+
 
 
   Debug.lineBreak();
-  Debug.createEffectOpen(() => {
-    console.log("open");
+
+  Debug.createDebugButton("addWaveTrack", () => {
+    let wave = new WaveNode();
+    wave.createWave();
+    mixer.createTrack(wave);
   });
-  Debug.createEffectList();
+
+  //画面UIを構築
+  new TrackWindow();
+  new ControlPanel(sequencer);
 
 
-  ReactDom.render(React.createElement(mixer.window.contents()),document.getElementById("react"));
+  //sequencer.start();
+
+  window.addEventListener("tick",()=>{
+    console.log("abc");
+  });
+
 }

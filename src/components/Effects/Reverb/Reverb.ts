@@ -34,6 +34,7 @@ export default class Reverb extends AudioComponent {
     if (!NumberUtils.isValid(value)) {
       value = value >= 1.0 ? 1.0 : value;
       value = value <= 0.0 ? 0.0 : value;
+      console.log("[Reverb]setWetRatio", "wet:" + value, "dry:" + (1 - value));
       this.wet.gain.value = value;
       this.dry.gain.value = 1 - value;
     }
@@ -47,15 +48,17 @@ export default class Reverb extends AudioComponent {
         this.currentType = this.type["hall"];
       case "chapel":
         this.currentType = this.type["chapel"];
+      case "carpark":
+        this.currentType = this.type["carpark"];
       default:
       //Typeが一致しなければなにもしない
     }
+    console.log("****",this.currentType.audio);
     this.resetConvolver();
   }
 
   resetConvolver() {
     if (this.currentType) {
-
       new XHRFileReader(this.currentType.audio)
         .readAsAudioData().then((audioBuffer: AudioBuffer) => {
           console.log("[Reverb]Reset Convolver");
@@ -73,11 +76,20 @@ export default class Reverb extends AudioComponent {
 
   }
 
-  setDomEvent(){
-    
+  setDomEvent(element: HTMLElement){
+    let convolver = element.getElementsByClassName("Reverb/Comvolver")[0] as HTMLInputElement;
+    convolver.onchange = (ev:Event)=>{
+      let target = ev.target as any;
+      this.changeConvolverType(target.value);
+    }
+
+    let wet = element.getElementsByClassName("Reverb/Wet")[0] as HTMLInputElement;
+    wet.onchange = (ev: Event) => {
+      let target = ev.target as HTMLInputElement;
+      wet.value = target.value;
+      this.setWetRatio((parseInt(wet.value) / 100));
+    };
   }
-
-
 
   //TODO JSONとして外に出すべき？？ PathをUtil化して他のところでもアクセスできるようにする
   private type: { [key: string]: ImpulceAudio } = {
@@ -87,11 +99,14 @@ export default class Reverb extends AudioComponent {
       image: "Effects/Reverb/impulse/hall.jpg"
     },
     "chapel": {
-      audio: "Effects/Reverb/impulce/chapel.wav",
-      image: "Effects/Reverb/impulce/chapel.jpg"
+      audio: "Effects/Reverb/impulse/chapel.wav",
+      image: "Effects/Reverb/impulse/chapel.jpg"
+    },
+    "carpark": {
+      audio: "Effects/Reverb/impulse/carpark.wav",
+      image: "Effects/Reverb/impulse/carpark.jpg"
     }
   }
-
 }
 
 export interface ImpulceAudio {

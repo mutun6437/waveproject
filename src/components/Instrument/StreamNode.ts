@@ -1,6 +1,7 @@
 import AudioComponent from '../CoreAudio/AudioComponent';
+import AudioInstrument from '../CoreAudio/AudioInstrument';
 
-export default class StreamNode extends AudioComponent {
+export default class StreamNode extends AudioInstrument {
   stream:MediaStreamAudioSourceNode;
 
   constructor() {
@@ -16,4 +17,6 @@ export default class StreamNode extends AudioComponent {
     console.log("[StreamNode]接続エラー",e);
   }
 
+  start(){}
+  stop(){}
 }

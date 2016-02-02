@@ -1,10 +1,10 @@
 import AudioComponent from '../CoreAudio/AudioComponent';
-import TrackWindow from './TrackWindow';
+import AudioSystem from '../CoreAudio/AudioSystem';
 
-export default class Track extends AudioComponent {
+
+export default class Track extends AudioSystem {
   number: number;
   nodes: AudioComponent[] = [];
-  window:TrackWindow;
 
   /**
    * 1~ の数字にコンポーネントを挿入
@@ -15,8 +15,8 @@ export default class Track extends AudioComponent {
     super();
     this.number = number;
     this.fetchAudioNode();
-    this.window = new TrackWindow({nodes:[]});
-    this.window.openWindow();
+
+    this.setDomElement();
   }
 
   insertNode(index: number, node: AudioComponent, isSort?: boolean) {
@@ -68,12 +68,17 @@ export default class Track extends AudioComponent {
     return this.nodes[index] ? this.nodes[index] : null;
   }
 
-  openNodeWindow(index:number){
-    let component = this.getAudioNode(index).getComponent();
-    this.window.addNode(index,component);
+  getDOMElement():HTMLElement{
+    let el = document.createElement("div");
+    el.id = "track"+this.number;
+    el.className = "track";
+    el.style.top =  "0px";
+    console.log(50*this.number+"px",document.getElementById("grid").clientHeight);
+    el.style.position = "relative";
+    return el;
   }
 
-  setDomEvent(){
-
+  setDomElement(){
+    document.getElementById("pool").appendChild(this.getDOMElement());
   }
 }
