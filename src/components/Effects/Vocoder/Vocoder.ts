@@ -1,6 +1,9 @@
 import AudioComponent from '../../CoreAudio/AudioComponent';
 import AudioContextWrapper from '../../CoreAudio/AudioContextWrapper';
 
+
+//TODO 作り込む
+
 export default class Vocoder extends AudioComponent {
   name: string = "Effects/Vocoder";
 
@@ -74,5 +77,7 @@ export default class Vocoder extends AudioComponent {
       pitch.value = target.value;
       this.pitch = parseFloat(target.value);
     };
+
+
   }
 }

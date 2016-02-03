@@ -1,7 +1,5 @@
-import Utils from '../../Utils/NumberUtils';
+import Utils from '../../../System/Utils/NumberUtils';
 import AudioComponent from '../../CoreAudio/AudioComponent';
-import * as React from 'react'
-import DelayWindow from './DelayWindow';
 
 export default class Delay extends AudioComponent {
   name: string = "Effects/Delay";
@@ -13,10 +11,6 @@ export default class Delay extends AudioComponent {
 
   constructor() {
     super();
-
-//    this.window = new DelayWindow({setDelayTime:this.setDelayTime,setWetRatio:this.setWetRatio,setFeedback:this.setFeedback});
-    this.window = new DelayWindow(this);
-
     this.delay = this.context.createDelay();
     this.delay.delayTime.value = 0.25;
 

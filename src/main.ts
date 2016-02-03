@@ -12,6 +12,7 @@ import ControlPanel from './System/UI/ControlPanel/ControlPanel';
 import WaveNode from './components/Instrument/WaveNode';
 import TrackWindow from './System/UI/TrackWindow/TrackWindow';
 import Vocoder from './components/Effects/Vocoder/Vocoder';
+import Ampsimulator from './components/Effects/Ampsimulator/Ampsimulator';
 
 let sequencer:Sequencer = null;
 
@@ -31,6 +32,7 @@ window.onload = () => {
   let delay2: Delay = new Delay();
   let reverb: Reverb = new Reverb();
   let vocoder: Vocoder = new Vocoder();
+  let ampsimulator:Ampsimulator = new Ampsimulator();
 
   Debug.createDebugButton("addDelay", () => {
     delay.openWindow();
@@ -45,6 +47,11 @@ window.onload = () => {
   Debug.createDebugButton("addVocoder", () => {
     vocoder.openWindow();
     mixer.getTrack(1).insertNode(4, vocoder);
+  });
+
+  Debug.createDebugButton("addAmpsimulator", () => {
+    ampsimulator.openWindow();
+    mixer.getTrack(1).insertNode(5, ampsimulator);
   });
 
 
