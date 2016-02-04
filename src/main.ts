@@ -67,6 +67,10 @@ window.onload = () => {
     mixer.createTrack(wave);
   });
 
+  Debug.createDebugButton("openMixer", () => {
+    mixer.openWindow();
+  });
+
   //画面UIを構築
   new TrackWindow();
   new ControlPanel(sequencer);

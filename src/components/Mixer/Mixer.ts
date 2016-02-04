@@ -4,6 +4,7 @@ import AudioInstrument from '../CoreAudio/AudioInstrument';
 import AudioContextWrapper from '../CoreAudio/AudioContextWrapper';
 
 export default class Mixer extends AudioComponent {
+  name:string = "Mixer";
   tracks: Track[] = [];
 
   constructor() {
