@@ -1,0 +1,28 @@
+.Mixer-Track {
+  width: 100px;
+  height:500px;
+  border: 1px solid black;
+
+  .Mixer-Track-Gain {
+    -webkit-transform: rotate(-90deg);
+    height:50px;
+    width: 400px;
+    left: -150px;
+    top:200px;
+    position: relative;
+  }
+
+  .Mixer-Track-Name {
+    height:30px;
+    width: 100px;
+    position: relative;
+    border: 1px solid black;
+    top:410px;
+    text-align: center;
+  }
+}
+
+
+.Mixer-Track-Master {
+  float: right;
+}

@@ -1,20 +1,23 @@
 import AudioComponent from '../CoreAudio/AudioComponent';
 import AudioSystem from '../CoreAudio/AudioSystem';
+import AudioInstrument from '../CoreAudio/AudioInstrument';
 
 
 export default class Track extends AudioSystem {
   number: number;
   nodes: AudioComponent[] = [];
+  instrument:AudioInstrument;
 
   /**
    * 1~ の数字にコンポーネントを挿入
    * fetchAudioNodeが正しく連結し、ノードを生成
    */
 
-  constructor(number: number) {
+  constructor(number: number,instrument:AudioInstrument) {
     super();
     this.number = number;
     this.fetchAudioNode();
+    this.instrument = instrument;
 
     this.setDomElement();
   }
@@ -75,10 +78,13 @@ export default class Track extends AudioSystem {
     el.style.top =  "0px";
     console.log(50*this.number+"px",document.getElementById("grid").clientHeight);
     el.style.position = "relative";
+    el.appendChild(this.instrument.element);
     return el;
   }
 
   setDomElement(){
+    console.log("[Track]setDomElement");
     document.getElementById("pool").appendChild(this.getDOMElement());
+    this.instrument.setEvent();
   }
 }

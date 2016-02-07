@@ -1,10 +1,10 @@
-import Track from './Track';
+import Track from '../Track/Track';
 import AudioComponent from '../CoreAudio/AudioComponent';
 import AudioInstrument from '../CoreAudio/AudioInstrument';
 import AudioContextWrapper from '../CoreAudio/AudioContextWrapper';
 
 export default class Mixer extends AudioComponent {
-  name:string = "Mixer";
+  name: string = "Mixer";
   tracks: Track[] = [];
 
   constructor() {
@@ -16,10 +16,11 @@ export default class Mixer extends AudioComponent {
     return this.tracks[index - 1];
   }
 
-  createTrack(audioNode: AudioInstrument) {
-    let track = new Track(this.tracks.length);
+  createTrack(instrument: AudioInstrument) {
+    let track = new Track(this.tracks.length,instrument);
     track.output.connect(this.output);
-    audioNode.connect(track);
+    instrument.connect(track);
+    instrument.setTrackNumber(this.tracks.length);
     this.tracks[this.tracks.length] = track;
     console.log("[Mixer]createTrack [" + this.tracks.length + "]");
   }
@@ -29,8 +30,15 @@ export default class Mixer extends AudioComponent {
     this.tracks[index] = null;
   }
 
-  setDomEvent(){
+  setDomEvent(element: HTMLElement) {
+    let MasterGain = element.getElementsByClassName("Mixer-Master-Gain")[0] as HTMLElement;
+    MasterGain.addEventListener("change",(ev)=>{
+      let target = ev.target as HTMLInputElement;
+      console.log(parseInt(target.value));
+      this.output.gain.value = parseInt(target.value);
+    });
 
-  }
+  };
+
 
 }

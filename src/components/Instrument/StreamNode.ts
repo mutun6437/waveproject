@@ -11,11 +11,16 @@ export default class StreamNode extends AudioInstrument {
       this.stream = this.context.createMediaStreamSource(stream);
       this.stream.connect(this.output);
     },this.connectionErrorHandler);
+
+    this.element = document.createElement("div");
   }
 
   connectionErrorHandler(e:Error){
     console.log("[StreamNode]接続エラー",e);
   }
+
+  //未実装
+  setEvent(){}
 
   start(){}
   stop(){}
